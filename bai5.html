@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tính chỉ số cân nặng cửa cơ thể</title>
+  </head>
+  <body>
+    <h2>Kiểm tra chỉ số cân nặng của bạn:</h2>
+    <h3>Điền các chỉ số sau:</h3>
+    <label for="weight"><b>Cân nặng:</b></label>
+    <input type="number" id="weight" placeholder="đơn vị: kg" />
+    <br /><br />
+    <label for="height"><b>Chiều cao:</b></label>
+    <input type="number" id="height" placeholder="đợn vị: mét" />
+    <br /><br />
+    <button onclick="BMI_result()">Tính toán</button>
+    <p id="result"></p>
+
+    <script>
+      function BMI_result() {
+        let value_weight = parseFloat(document.getElementById("weight").value);
+        let value_height = parseFloat(document.getElementById("height").value);
+
+        let value_bmi = value_weight / (value_height * value_height);
+
+        if (isNaN(value_weight) || isNaN(value_height)) {
+          document.getElementById("result").innerHTML =
+            "Vui lòng nhập đầy đủ cân nặng và chiều cao!";
+          return;
+        }
+
+        let string_bmi = "";
+        if (value_bmi < 18.5) {
+          string_bmi = "Under weight";
+        } else if (value_bmi < 25.0) {
+          string_bmi = "Normal";
+        } else if (value_bmi < 30.0) {
+          string_bmi = "Over weight";
+        } else {
+          string_bmi = "Obese";
+        }
+        document.getElementById("result").innerHTML =
+          "BMI = " + value_bmi.toFixed(2) + " : " + string_bmi;
+      }
+    </script>
+  </body>
+</html>
